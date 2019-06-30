@@ -3,7 +3,7 @@ package cn.wxy.recursive;
 /**
  * 递归思想
  *
- * @autor Wuxiaoyuan
+ * @autor wxyidea
  * @create 2019-06-28
  **/
 public class StringReverse {
