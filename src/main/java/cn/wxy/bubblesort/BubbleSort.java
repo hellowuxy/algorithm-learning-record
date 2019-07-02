@@ -1,5 +1,7 @@
 package cn.wxy.bubblesort;
 
+import cn.wxy.utils.ArrayUtil;
+
 /**
  * 冒泡排序（Bubble Sort）是一种简单的排序算法，它重复的走访要排序的数列，每次比较两个元素，
  * 如果他们的顺序错误就交换他们的位置，走访的工作是重复进行直到没有元素需要交换，表明排序已经完成。<br/>
@@ -92,11 +94,7 @@ public class BubbleSort {
     // sort array
     bubbleSort(array);
     // print ordered array
-    StringBuilder sb = new StringBuilder();
-    for (int cur : array) {
-      sb.append(cur).append(",");
-    }
-    System.out.println(sb.toString().substring(0, sb.toString().length() - 1));
+    ArrayUtil.printArray(array);
 
     // 比较两种冒泡排序算法的效率
     array = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
