@@ -22,22 +22,22 @@ package cn.wxy.quartsort;
  * <table BORDER CELLPADDING=5 CELLSPACING=1>
  *  <tr>
  *     <td ALIGN=CENTER>最坏时间复杂度</td>
- *     <td ALIGN=CENTER>O(n^2)</td>
+ *     <td ALIGN=CENTER>O(n<sup>2</sup>)</td>
  *  </tr>
  *  <tr>
  *     <td ALIGN=CENTER>最优时间复杂度</td>
- *     <td ALIGN=CENTER>O(n long n)</td>
+ *     <td ALIGN=CENTER>O(n log n)</td>
  *  </tr>
  *  <tr>
  *     <td ALIGN=CENTER>平均时间复杂度</td>
- *     <td ALIGN=CENTER>O(n long n)</td>
+ *     <td ALIGN=CENTER>O(n log n)</td>
  *  </tr>
  * </table>
  *
  * @autor wxyidea
  * @create 2019-06-29
  **/
-public class QuartSort {
+public class QuickSort {
 
   /**
    * 采用原地分割的快速排序

@@ -12,7 +12,7 @@ package cn.wxy.donaldshell;
  * <table BORDER CELLPADDING=5 CELLSPACING=1>
  *  <tr>
  *     <td ALIGN=CENTER>最坏时间复杂度</td>
- *     <td ALIGN=CENTER>已知最好的：O(n log ^2 n)</td>
+ *     <td ALIGN=CENTER>已知最好的：O(n log<sup>2</sup> n)</td>
  *  </tr>
  *  <tr>
  *     <td ALIGN=CENTER>最优时间复杂度</td>
