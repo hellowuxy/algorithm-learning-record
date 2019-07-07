@@ -1,4 +1,4 @@
-package cn.wxy.donaldshell;
+package cn.wxy.algorithms.donaldshell;
 
 /**
  * 希尔排序的核心思想:

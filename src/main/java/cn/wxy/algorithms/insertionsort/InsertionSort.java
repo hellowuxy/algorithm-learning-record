@@ -1,4 +1,4 @@
-package cn.wxy.insertionsort;
+package cn.wxy.algorithms.insertionsort;
 
 /**
  * 插入排序（Insertion Sort）是一种简单直观的排序算法。它的工作原理是通过构建有序序列，

@@ -1,4 +1,4 @@
-package cn.wxy.quartsort;
+package cn.wxy.algorithms.quartsort;
 
 /**
  * 快速排序算法:它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，

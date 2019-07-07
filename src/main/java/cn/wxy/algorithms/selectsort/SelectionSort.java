@@ -1,4 +1,4 @@
-package cn.wxy.selectsort;
+package cn.wxy.algorithms.selectsort;
 
 /**
  * 选择排序（selection sort）是一种简单直观的排序算法。它的工作原理如下：首先在未排序序列中找到最小（大）元素，

@@ -1,4 +1,4 @@
-package cn.wxy.bubblesort;
+package cn.wxy.algorithms.bubblesort;
 
 import cn.wxy.utils.ArrayUtils;
 

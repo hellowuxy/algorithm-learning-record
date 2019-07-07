@@ -1,4 +1,4 @@
-package cn.wxy.recursive;
+package cn.wxy.algorithms.recursive;
 
 /**
  * 递归思想

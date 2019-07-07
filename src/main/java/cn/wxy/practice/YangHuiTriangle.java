@@ -1,4 +1,4 @@
-package cn.wxy.recursive;
+package cn.wxy.practice;
 
 import java.util.ArrayList;
 import java.util.List;

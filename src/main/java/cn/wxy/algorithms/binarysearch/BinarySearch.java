@@ -1,4 +1,4 @@
-package cn.wxy.binarysearch;
+package cn.wxy.algorithms.binarysearch;
 
 /**
  * 二分查找（binary search），又叫折半查找（half-interval search）、对数查找（logarithmic search），它是一种在有序数组中
