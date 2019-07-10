@@ -1,6 +1,5 @@
-package cn.wxy.practice;
+package cn.wxy.leetcode;
 
-import cn.wxy.utils.ArrayUtils;
 import org.junit.Assert;
 
 /**

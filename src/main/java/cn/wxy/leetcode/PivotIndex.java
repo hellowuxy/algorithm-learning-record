@@ -1,4 +1,4 @@
-package cn.wxy.practice;
+package cn.wxy.leetcode;
 
 import org.junit.Assert;
 

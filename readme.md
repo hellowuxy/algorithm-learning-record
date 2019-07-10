@@ -1,3 +1,14 @@
-## 算法学习记录
+## Algorithms Leaning Record
 
-记录算法思想，使用Java语言实现，以及leetcode上面的题解
+### Common Algorithms
+describing common algorithms with java, including binary search,bubble sort,insertion sort,
+selection sort,donald shell, quick sort.
+
+### LeetCode problemset
+
+| #    | Title                                                        | Solution | Difficulty |
+| ---- | ------------------------------------------------------------ | -------- | ---------- |
+| 1    | [Two Sum](https://leetcode-cn.com/problems/two-sum)             | Java     | easy       |
+| 2    | [Add Two Numbers](https://leetcode-cn.com/problems/add-two-numbers) | Java     | medium     |
+|      |                                                              |          |            |
+

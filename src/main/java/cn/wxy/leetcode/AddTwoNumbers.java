@@ -1,4 +1,4 @@
-package cn.wxy.practice;
+package cn.wxy.leetcode;
 
 import cn.wxy.datastructure.SingleListNode;
 import cn.wxy.utils.LinkedListUtils;
