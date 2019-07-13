@@ -86,15 +86,6 @@ public class LongestSubstring {
     return max;
   }
 
-  public static int lengthOflongestSubstring_way3(String s) {
-    int max = 0;
-    int i = 0, j = 0;
-    Map<Character, Integer> map = new HashMap<>();
-    while (i < s.length() && j < s.length()) {
-
-    }
-  }
-
   public static void main(String[] args) {
     Assert.assertEquals(3, lengthOflongestSubstring_way2("abcabcbb"));
     Assert.assertEquals(1, lengthOflongestSubstring_way2("bbbbb"));
