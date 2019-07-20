@@ -3,7 +3,7 @@ package cn.wxy.leetcode;
 import cn.wxy.utils.ArrayUtils;
 import java.math.BigInteger;
 
-/**
+/*
  *  给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。
  *  最高位数字存放在数组的首位， 数组中每个元素只存储一个数字。
  *  假设除了整数 0 之外，这个整数不会以零开头。
@@ -17,11 +17,14 @@ import java.math.BigInteger;
  *     输入: [4,3,2,1]
  *     输出: [4,3,2,2]
  *     解释: 输入数组表示数字 4321。
- *
+ */
+
+/**
  * @autor wxyidea
  * @create 2019-07-07
  **/
 public class PlusOne {
+
   /**
    * 第一种解法
    *
@@ -40,10 +43,13 @@ public class PlusOne {
     copy[0] = 1;
     boolean flag = true;
     for (int i = 0; i < arrays.length; i++) {
-      if (arrays[i] < 9)
+      if (arrays[i] < 9) {
         flag = false;
+      }
     }
-    if (flag) return copy;
+    if (flag) {
+      return copy;
+    }
 
     //arrays[arrays.length-1]=9的情况
     for (int i = arrays.length - 1; i > 0; i--) {
@@ -71,8 +77,9 @@ public class PlusOne {
       arrays[i]++;
       arrays[i] %= 10;
       // 如果arrays[i]=0,说明需要执行进位操作，否则直接返回
-      if (arrays[i] != 0)
+      if (arrays[i] != 0) {
         return arrays;
+      }
     }
     // 最高位发生了进位，数组长度+1
     arrays = new int[arrays.length + 1];
@@ -89,8 +96,9 @@ public class PlusOne {
    */
   public static int[] plusOne_way3(int[] arrays) {
     StringBuilder sb = new StringBuilder();
-    for (int num : arrays)
+    for (int num : arrays) {
       sb.append(num);
+    }
 
     BigInteger digitsDecimal = new BigInteger(sb.toString());
     digitsDecimal = digitsDecimal.add(new BigInteger("1"));

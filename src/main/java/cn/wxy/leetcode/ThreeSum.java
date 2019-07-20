@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
+/*
  * 三数之和：给定一个包含 n 个整数的数组 arrays，判断 arrays 中是否存在三个元素 a，b，c ，
  *         使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。
  *         注意：答案中不可以包含重复的三元组。
@@ -18,6 +18,8 @@ import java.util.List;
  *      [-1, -1, 2]
  *    ]
  *
+ */
+/**
  * @autor wxyidea
  * @create 2019-07-08
  **/

@@ -3,7 +3,7 @@ package cn.wxy.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/*
  * 杨辉三角：每一行的最左边和最右边的数字总是 1，对于其余的每个数字都是前一行中直接位于它上面的两个数字之和。
  * 下面是一个杨辉三角的示例：
  *      1
@@ -19,7 +19,9 @@ import java.util.List;
  *  (2)然后我们可以用下面这个公式来描述这一关系：<br/>
  *    <pre>f(i,j)=f(i−1,j−1)+f(i−1,j)</pre>
  *    其中，i>=2,j>=2且f(1,1)=1;
- *
+ */
+
+/**
  * @autor wxyidea
  * @create 2019-06-30
  **/
@@ -33,20 +35,23 @@ public class YangHuiTriangle {
    */
   public static List<Integer[]> generate(int rowNums) {
     List<Integer[]> yhTriangle = new ArrayList<>();
-    if (rowNums <= 0)
+    if (rowNums <= 0) {
       return yhTriangle;
+    }
 
     for (int i = 0; i < rowNums; i++) {
       Integer[] newLine = new Integer[i + 1];
       Integer[] lastLine = null;
-      if (i > 1)
+      if (i > 1) {
         lastLine = yhTriangle.get(i - 1); // 获取上一行数据
+      }
 
       for (int j = 0; j <= i; j++) {
-        if (j == 0 || j == i)
+        if (j == 0 || j == i) {
           newLine[j] = 1;
-        else
+        } else {
           newLine[j] = lastLine[j - 1] + lastLine[j]; // 等于左上方数字加上右上方数字之和
+        }
       }
       yhTriangle.add(newLine);
     }
@@ -60,8 +65,9 @@ public class YangHuiTriangle {
    * @return 包含指定行元素的集合
    */
   public static List<Integer> generateSpecifiedRow(int rowNums) {
-    if (rowNums <= 0)
+    if (rowNums <= 0) {
       throw new IllegalArgumentException("rowNums must great than 0");
+    }
 
     // 上一行
     List<Integer> prev = null;
@@ -86,12 +92,13 @@ public class YangHuiTriangle {
     // 从第三行开始生成（注意：数组下标是从0开始的）
     for (int i = 2; i < rowNums; i++) {
       // 初始化当前行
-      cur = new ArrayList<>(rowNums+1);
+      cur = new ArrayList<>(rowNums + 1);
       for (int j = 0; j <= i; j++) {
-        if (j == 0 || j == i)
+        if (j == 0 || j == i) {
           cur.add(1);
-        else
+        } else {
           cur.add(prev.get(j - 1) + prev.get(j));
+        }
       }
       //重新设置prev，为生成下一行数据做准备
       prev = cur;
@@ -103,16 +110,16 @@ public class YangHuiTriangle {
     List<Integer[]> yhTriangle = generate(20);
     for (Integer[] line : yhTriangle) {
       StringBuilder sb = new StringBuilder();
-      for (Integer ele : line)
+      for (Integer ele : line) {
         sb.append(ele).append(" ");
+      }
       System.out.println(sb.toString().trim());
     }
     System.out.println("----------------------------");
 
-
     List<Integer> row = generateSpecifiedRow(10);
-    for(Integer ele : row){
-      System.out.print(ele+" ");
+    for (Integer ele : row) {
+      System.out.print(ele + " ");
     }
   }
 }
