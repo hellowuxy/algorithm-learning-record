@@ -44,8 +44,6 @@ package cn.wxy.leetcode;
          因此返回 INT_MIN (−231) 。
  */
 
-import org.junit.Assert;
-
 /**
  * 字符串转整数
  *
@@ -103,15 +101,5 @@ public class StringToInteger {
       return digitsStr.charAt(0) == '-' ? Integer.MIN_VALUE : Integer.MAX_VALUE;
     }
     return num;
-  }
-
-  public static void main(String[] args) {
-    Assert.assertEquals(0, atoi("+"));
-    Assert.assertEquals(0, atoi("-"));
-    Assert.assertEquals(123, atoi("123"));
-    Assert.assertEquals(1234567890, atoi("1234567890"));
-    Assert.assertEquals(Integer.MAX_VALUE, atoi("9876543210"));
-    Assert.assertEquals(-1234567890, atoi("-1234567890"));
-    Assert.assertEquals(Integer.MIN_VALUE, atoi("-9876543210"));
   }
 }

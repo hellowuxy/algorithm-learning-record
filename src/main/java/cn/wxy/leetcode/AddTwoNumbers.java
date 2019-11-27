@@ -1,23 +1,7 @@
 package cn.wxy.leetcode;
 
-import cn.wxy.datastructure.list.LinkedList;
 import cn.wxy.datastructure.list.LinkedList.Node;
 import cn.wxy.utils.LinkedListUtils;
-
-/*
- * 两数相加：
- *    给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
- *    如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。
- *    您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
- *
- * 示例：
- *   输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
- *   输出：7 -> 0 -> 8
- *   原因：342 + 465 = 807
- *
- *
- * 解题思路请参考 https://leetcode-cn.com/articles/add-two-numbers
- */
 
 /**
  * @autor wxyidea
@@ -25,13 +9,6 @@ import cn.wxy.utils.LinkedListUtils;
  **/
 public class AddTwoNumbers {
 
-    /**
-     * 时间复杂度 O(max{m,n}),m 表示链表 l1 的长度，n 表示链表 l2 的长度
-     *
-     * @param l1 链表
-     * @param l2 链表
-     * @return 新链表
-     */
     public static Node addTwoNumbers(Node l1, Node l2) {
         Node<Integer> p = l1;
         Node<Integer> q = l2;
@@ -121,15 +98,6 @@ public class AddTwoNumbers {
         return head;
     }
 
-    /**
-     * 该方法是对addTwoNumbers的优化，代码更简洁。
-     * <p>
-     * 时间复杂度 O(max{m,n}),m 表示链表 l1 的长度，n 表示链表 l2 的长度
-     *
-     * @param l1 链表
-     * @param l2 链表
-     * @return 新链表
-     */
     public static Node addTwoNumbersAdvanced(Node l1, Node l2) {
         Node<Integer> p = l1;
         Node<Integer> q = l2;
