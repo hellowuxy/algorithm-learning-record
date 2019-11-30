@@ -1,5 +1,7 @@
 package cn.wxy.datastructure.list;
 
+import com.sun.istack.internal.NotNull;
+
 /**
  * implementation of linkedList
  *
@@ -26,7 +28,7 @@ public class LinkedList<T> {
      *
      * @param head head node(first node)
      */
-    public LinkedList(Node<T> head) {
+    public LinkedList(@NotNull Node<T> head) {
         this.head = head;
         this.size = 1;
     }
@@ -50,11 +52,7 @@ public class LinkedList<T> {
      *
      * @param node added node
      */
-    public void add(Node<T> node) {
-        if (node == null) {
-            throw new IllegalArgumentException("node must not be null");
-        }
-
+    public void add(@NotNull Node<T> node) {
         if (head == null) {
             head = node;
         } else {
@@ -73,7 +71,7 @@ public class LinkedList<T> {
      *
      * @param val added value
      */
-    public void add(T val) {
+    public void add(@NotNull T val) {
         add(new Node<T>(val));
     }
 
@@ -83,10 +81,7 @@ public class LinkedList<T> {
      * @param node the node to be removed
      * @return true if node exists and removed, else false
      */
-    public boolean remove(Node<T> node) {
-        if (node == null)
-            throw new IllegalArgumentException("node must not be null");
-
+    public boolean remove(@NotNull Node<T> node) {
         if (size() < 1)
             return false;
 
@@ -116,7 +111,7 @@ public class LinkedList<T> {
      * @param val specified value
      * @return true if node exists and removed, else false
      */
-    public boolean remove(T val) {
+    public boolean remove(@NotNull T val) {
         if (size() < 1) {
             return false;
         }
@@ -144,11 +139,7 @@ public class LinkedList<T> {
      * @param node node whose presence in linkedList list is to be tested
      * @return true if linkedList contains specified node, else false
      */
-    public boolean contain(Node<T> node) {
-        if (node == null) {
-            throw new IllegalArgumentException("node must not be null");
-        }
-
+    public boolean contain(@NotNull Node<T> node) {
         if (size() < 1) {
             return false;
         }
@@ -169,7 +160,7 @@ public class LinkedList<T> {
      * @param val value whose presence in linkedList to be tested
      * @return true if existing node in linkedList contains specified value, else false
      */
-    public boolean contain(T val) {
+    public boolean contain(@NotNull T val) {
         if (size() < 1) {
             return false;
         }
@@ -191,14 +182,7 @@ public class LinkedList<T> {
      * @param newNode new node to be inserted
      * @return true if success to insert new node, else false
      */
-    public boolean insertBefore(Node<T> specifiedNode, Node<T> newNode) {
-        if (specifiedNode == null) {
-            throw new IllegalArgumentException("node must not be null");
-        }
-        if (newNode == null) {
-            throw new IllegalArgumentException("node must not be null");
-        }
-
+    public boolean insertBefore(@NotNull Node<T> specifiedNode, @NotNull Node<T> newNode) {
         if (size() < 1) {
             return false;
         }
