@@ -136,6 +136,29 @@ public class DoubleLinkedList<T> {
     }
 
     /**
+     * remove node contained specific value from linked list
+     *
+     * @param value
+     * @return most recently visited
+     */
+    public boolean remove(@NotNull T value) {
+        if (!contain(value)) {
+            return false;
+        }
+
+        DLNode<T> node = first;
+        while (node != null && node.value != value) {
+            node = node.next;
+        }
+
+        if (node != null) {
+            return remove(node);
+        }
+
+        return false;
+    }
+
+    /**
      * insert node before specified node.
      *
      * @param specifiedNode specified node

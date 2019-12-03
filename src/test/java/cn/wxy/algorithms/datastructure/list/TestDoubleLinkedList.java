@@ -52,14 +52,14 @@ public class TestDoubleLinkedList {
         Assert.assertEquals(node1, linkedList.first());
         Assert.assertEquals(node5, linkedList.last());
 
-        linkedList.remove(node5);
+        linkedList.remove("5");
         Assert.assertEquals(node4, linkedList.last());
 
         linkedList.remove(node1);
         Assert.assertEquals(node2, linkedList.first());
 
         linkedList.remove(node2);
-        linkedList.remove(node4);
+        linkedList.remove("4");
         Assert.assertEquals(0, linkedList.size());
         Assert.assertNull(linkedList.first());
         Assert.assertNull(linkedList.last());
