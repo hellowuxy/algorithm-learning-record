@@ -1,9 +1,7 @@
 package cn.wxy.algorithms.lru;
 
-import cn.wxy.datastructure.list.DoubleLinkedList;
-
 /**
- * LRU implementation based linked list
+ * LinkedList-based LRU cache implementation
  *
  * @author wxyidea
  * @create 2019-12-03
@@ -24,7 +22,15 @@ public class LRUBasedLinkedList<T> {
      */
     private boolean eviction = false;
 
-    private DoubleLinkedList<T> linkedList;
+    /**
+     * the first node of linked list
+     */
+    private Node<T> first;
+
+    /**
+     * the last node of linked list
+     */
+    private Node<T> last;
 
     /**
      * construct LRU cache with specific capacity, and when the cache is full, no element evicted
@@ -44,7 +50,7 @@ public class LRUBasedLinkedList<T> {
     public LRUBasedLinkedList(int capacity, boolean eviction) {
         this.capacity = capacity;
         this.eviction = eviction;
-        linkedList = new DoubleLinkedList<>();
+
     }
 
     /**
@@ -64,23 +70,55 @@ public class LRUBasedLinkedList<T> {
             throw new RuntimeException("the cache is null, and element can't be evicted");
         } else if (size >= capacity && eviction) {
             // remove element recently less frequently used
-            linkedList.remove(linkedList.last());
+            Node<T> prev = last.prev;
+            prev.next = null;
+            last.prev = null;
+            last = prev;
             size--;
         }
 
-        if (linkedList.contain(element)) {
-            linkedList.remove(element);
-            linkedList.insertBefore(linkedList.first(), new DoubleLinkedList.DLNode<>(element));
+        Node<T> node = contains(element);
+        if (node != null) {
+            // remove element
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+            node.prev = null;
+            node.next = null;
+
+            // put it on head of linked list
+            first.prev=node;
+            node.next = first;
+            first = node;
             return;
         }
 
         // add element to the head of linked list
         if (size == 0) {
-            linkedList.add(element);
+            first = last = new Node<>(element);
         } else {
-            linkedList.insertBefore(linkedList.first(), new DoubleLinkedList.DLNode<>(element));
+            Node<T> n = new Node<>(element);
+            first.prev=n;
+            n.next = first;
+            first = n;
         }
         size++;
+    }
+
+    /**
+     * retrieve node that contains specific element
+     *
+     * @param element the element whose presence to be tested
+     * @return the node that contains specific element, return null if no node of linked list contain specific element
+     */
+    private Node<T> contains(T element) {
+        Node<T> cursor = first;
+        while (cursor != null) {
+            if (cursor.element == element) {
+                return cursor;
+            }
+            cursor = cursor.next;
+        }
+        return null;
     }
 
     /**
@@ -89,10 +127,17 @@ public class LRUBasedLinkedList<T> {
      * @return the element removed
      */
     public T remove() {
-        DoubleLinkedList.DLNode<T> node = linkedList.last();
-        linkedList.remove(linkedList.last());
+        Node<T> removed = last;
+
+        // remove last node
+        Node<T> node = last.prev;
+        node.next =null;
+        last.prev = null;
+        last = node;
+
         size--;
-        return node.value;
+
+        return removed.element;
     }
 
     /**
@@ -101,7 +146,7 @@ public class LRUBasedLinkedList<T> {
      * @return most recently visited element
      */
     public T getLatestElement() {
-        return linkedList.first().value;
+        return first.element;
     }
 
     /**
@@ -110,6 +155,16 @@ public class LRUBasedLinkedList<T> {
      * @return the element recently less frequently used
      */
     public T getEarliestElement() {
-        return linkedList.last().value;
+        return last.element;
+    }
+
+    static class Node<T> {
+        public Node<T> prev;
+        public Node<T> next;
+        public T element;
+
+        public Node(T element) {
+            this.element = element;
+        }
     }
 }
