@@ -15,26 +15,12 @@ public class LinkedList<T> {
      */
     private int size;
     /**
-     * the head node of linkedList that is first node if linkedList not null
+     * sentinel node, used to simplify code logic
      */
-    private Node<T> head;
-
-    public LinkedList() {
-        this.size = 0;
-    }
+    private Node<T> head = new Node<>(null);
 
     /**
-     * construct linkedList with specific head node
-     *
-     * @param head head node(first node)
-     */
-    public LinkedList(@NotNull Node<T> head) {
-        this.head = head;
-        this.size = 1;
-    }
-
-    /**
-     * @return return head node of linkedList, null if linkedList is null
+     * @return head node of linkedList
      */
     public Node<T> getHead() {
         return this.head;
@@ -50,19 +36,14 @@ public class LinkedList<T> {
     /**
      * add a new node to the tail of linkedList
      *
-     * @param node added node
+     * @param node node to be added
      */
     public void add(@NotNull Node<T> node) {
-        if (head == null) {
-            head = node;
-        } else {
-            Node<T> n = head;
-            while (n.next != null) {
-                n = n.next;
-            }
-            n.next = node;
+        Node<T> n = head;
+        while (n.next != null) {
+            n = n.next;
         }
-
+        n.next = node;
         size++;
     }
 
@@ -82,27 +63,16 @@ public class LinkedList<T> {
      * @return true if node exists and removed, else false
      */
     public boolean remove(@NotNull Node<T> node) {
-        if (size() < 1)
-            return false;
-
-        if (head == node) {
-            head = head.next;
-            size--;
-            return true;
-        }
-
         Node<T> n = head;
-        // look node to be removed
-        while (n != null && n.next != node) {
+        while (n.next != null) {
+            if (n.next == node) {
+                n.next = n.next.next;
+                size--;
+                return true;
+            }
             n = n.next;
         }
-        if (n != null) {
-            // find it , so remove it!
-            n.next = n.next.next;
-        }
-
-        size--;
-        return true;
+        return false;
     }
 
     /**
@@ -112,17 +82,9 @@ public class LinkedList<T> {
      * @return true if node exists and removed, else false
      */
     public boolean remove(@NotNull T val) {
-        if (size() < 1) {
-            return false;
-        }
-
-        if (head.val == val) {
-            return remove(head);
-        }
-
         Node<T> n = head;
-        while (n != null) {
-            if (n.next != null && n.val == val) {
+        while (n.next != null) {
+            if (n.next.val == val) {
                 n.next = n.next.next;
                 size--;
                 return true;
@@ -140,11 +102,11 @@ public class LinkedList<T> {
      * @return true if linkedList contains specified node, else false
      */
     public boolean contain(@NotNull Node<T> node) {
-        if (size() < 1) {
-            return false;
-        }
+        // if (size() < 1) {
+        //     return false;
+        // }
 
-        Node<T> n = head;
+        Node<T> n = head.next;
         while (n != null) {
             if (n == node) {
                 return true;
@@ -161,11 +123,11 @@ public class LinkedList<T> {
      * @return true if existing node in linkedList contains specified value, else false
      */
     public boolean contain(@NotNull T val) {
-        if (size() < 1) {
-            return false;
-        }
+        // if (size() < 1) {
+        //     return false;
+        // }
 
-        Node<T> n = head;
+        Node<T> n = head.next;
         while (n != null) {
             if (n.val == val) {
                 return true;
@@ -176,24 +138,13 @@ public class LinkedList<T> {
     }
 
     /**
-     * insert newNode before specified node 'n'
+     * insert newNode before specified node
      *
      * @param specifiedNode
-     * @param newNode new node to be inserted
+     * @param newNode       new node to be inserted
      * @return true if success to insert new node, else false
      */
     public boolean insertBefore(@NotNull Node<T> specifiedNode, @NotNull Node<T> newNode) {
-        if (size() < 1) {
-            return false;
-        }
-
-        if (head == specifiedNode) {
-            newNode.next = head;
-            head = newNode;
-            size++;
-            return true;
-        }
-
         Node<T> n = head;
         while (n != null) {
             if (n.next == specifiedNode) {
@@ -209,25 +160,14 @@ public class LinkedList<T> {
     }
 
     /**
-     * insert newNode after specified node 'n'
+     * insert newNode after specified node
      *
      * @param specifiedNode
-     * @param newNode new node to be inserted
+     * @param newNode       new node to be inserted
      * @return true if success to insert new node, else false
      */
-    public boolean insertAfter(Node<T> specifiedNode, Node<T> newNode){
-        if (specifiedNode == null) {
-            throw new IllegalArgumentException("node must not be null");
-        }
-        if (newNode == null) {
-            throw new IllegalArgumentException("node must not be null");
-        }
-
-        if (size() < 1) {
-            return false;
-        }
-
-        Node<T> n = head;
+    public boolean insertAfter(Node<T> specifiedNode, Node<T> newNode) {
+        Node<T> n = head.next;
         while (n != null) {
             if (n == specifiedNode) {
                 newNode.next = n.next;
