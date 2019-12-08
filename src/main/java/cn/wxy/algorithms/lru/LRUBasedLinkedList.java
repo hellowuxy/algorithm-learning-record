@@ -1,7 +1,8 @@
 package cn.wxy.algorithms.lru;
 
 /**
- * LinkedList-based LRU cache implementation
+ * LinkedList-based LRU cache implementation, the element least recently used stores at the head of linked list,
+ * and the element frequently recently used stores at the tail of linked list.
  *
  * @author wxyidea
  * @create 2019-12-03
@@ -16,11 +17,6 @@ public class LRUBasedLinkedList<T> {
      * the number of element of cache
      */
     private int size = 0;
-
-    /**
-     * whether evicting element or not when cache is full
-     */
-    private boolean eviction = false;
 
     /**
      * the first node of linked list
@@ -38,38 +34,57 @@ public class LRUBasedLinkedList<T> {
      * @param capacity the capacity of cache
      */
     public LRUBasedLinkedList(int capacity) {
-        this(capacity, false);
-    }
-
-    /**
-     * construct LRU cache with specific capacity and eviction strategy
-     *
-     * @param capacity the capacity of cache
-     * @param eviction true for evicting element when cache if full,false for not
-     */
-    public LRUBasedLinkedList(int capacity, boolean eviction) {
         this.capacity = capacity;
-        this.eviction = eviction;
-
     }
 
     /**
-     * add specific element to cache, when the cache is full, evicting element recently less frequently used if
-     * <code>eviction</code> is true, else throw {@link RuntimeException}
+     * add specific element to cache, when the cache is full, evicting element recently less frequently used.
      *
      * @param element the element to be added
+     * @return if cache is full,return the element evicted, else return <code>null</code>
      */
-    public void add(T element) {
+    public T add(T element) {
         /*
-         1. check capacity of cache
-         2. checking whether element exists or not in cache
-         3. add element if not exist, else remove element and then put it on head of linked list
+         1. checking whether element exists or not in cache, if exists, remove element and then put it on head of linked list,
+         2. if not exist, check capacity of cache, evicting element recently less frequently used when cache is full,
+         3. add element to cache.
         */
 
-        if (size >= capacity && !eviction) {
-            throw new RuntimeException("the cache is null, and element can't be evicted");
-        } else if (size >= capacity && eviction) {
-            // remove element recently less frequently used
+        Node<T> node = contains(element);
+        if (node != null) {
+            if (size == 1) {
+                // only have a element in cache, do nothing.
+                return null;
+            }
+
+            if (node == first) {
+                // the element had at the head of linked list, do nothing
+                return null;
+            }
+
+            // remove element
+            if (node == last) {
+                last = node.prev;
+                last.next = null;
+                node.prev = null;
+            } else {
+                node.prev.next = node.next;
+                node.next.prev = node.prev;
+                node.prev = null;
+                node.next = null;
+            }
+
+            // put it on head of linked list
+            first.prev = node;
+            node.next = first;
+            first = node;
+            return null;
+        }
+
+        Node<T> evicted = null;
+        if (size >= capacity) {
+            evicted = last;
+            // remove last element
             Node<T> prev = last.prev;
             prev.next = null;
             last.prev = null;
@@ -77,31 +92,17 @@ public class LRUBasedLinkedList<T> {
             size--;
         }
 
-        Node<T> node = contains(element);
-        if (node != null) {
-            // remove element
-            node.prev.next = node.next;
-            node.next.prev = node.prev;
-            node.prev = null;
-            node.next = null;
-
-            // put it on head of linked list
-            first.prev=node;
-            node.next = first;
-            first = node;
-            return;
-        }
-
         // add element to the head of linked list
         if (size == 0) {
             first = last = new Node<>(element);
         } else {
             Node<T> n = new Node<>(element);
-            first.prev=n;
+            first.prev = n;
             n.next = first;
             first = n;
         }
         size++;
+        return evicted == null ? null : evicted.element;
     }
 
     /**
@@ -131,7 +132,7 @@ public class LRUBasedLinkedList<T> {
 
         // remove last node
         Node<T> node = last.prev;
-        node.next =null;
+        node.next = null;
         last.prev = null;
         last = node;
 
@@ -141,20 +142,26 @@ public class LRUBasedLinkedList<T> {
     }
 
     /**
-     * get element most recently visited
+     * get element frequently recently used
      *
-     * @return most recently visited element
+     * @return frequently recently used element, return null if cache is empty
      */
-    public T getLatestElement() {
+    public T getLatest() {
+        if (size == 0) {
+            return null;
+        }
         return first.element;
     }
 
     /**
-     * get element recently less frequently used
+     * get element least recently used
      *
-     * @return the element recently less frequently used
+     * @return the element least recently used, return null if cache is empty
      */
-    public T getEarliestElement() {
+    public T getEarliest() {
+        if (size == 0) {
+            return null;
+        }
         return last.element;
     }
 

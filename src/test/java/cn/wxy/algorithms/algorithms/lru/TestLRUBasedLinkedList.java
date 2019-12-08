@@ -12,34 +12,45 @@ public class TestLRUBasedLinkedList {
 
     @Test
     public void test() {
-        LRUBasedLinkedList<Integer> lru = new LRUBasedLinkedList<>(5, true);
+        LRUBasedLinkedList<Integer> cache = new LRUBasedLinkedList<>(3);
 
-        lru.add(1);
-        Assert.assertEquals(1, (int) lru.getEarliestElement());
-        Assert.assertEquals(1, (int) lru.getLatestElement());
+        Assert.assertNull(cache.getEarliest());
+        Assert.assertNull(cache.getLatest());
 
-        lru.add(2);
-        Assert.assertEquals(1, (int) lru.getEarliestElement());
-        Assert.assertEquals(2, (int) lru.getLatestElement());
+        cache.add(1); // 1
+        cache.add(1); // 1
+        Assert.assertEquals(1, (int) cache.getEarliest());
+        Assert.assertEquals(1, (int) cache.getLatest());
 
-        lru.add(3);
-        Assert.assertEquals(1, (int) lru.getEarliestElement());
-        Assert.assertEquals(3, (int) lru.getLatestElement());
+        cache.add(2); // 1->2
+        Assert.assertEquals(1, (int) cache.getEarliest());
+        Assert.assertEquals(2, (int) cache.getLatest());
+        cache.add(2); // 2->1
+        Assert.assertEquals(1, (int) cache.getEarliest());
+        Assert.assertEquals(2, (int) cache.getLatest());
 
-        lru.add(4);
-        Assert.assertEquals(1, (int) lru.getEarliestElement());
-        Assert.assertEquals(4, (int) lru.getLatestElement());
+        cache.add(1); // 1->2
+        Assert.assertEquals(2, (int) cache.getEarliest());
+        Assert.assertEquals(1, (int) cache.getLatest());
 
-        lru.add(5);
-        Assert.assertEquals(1, (int) lru.getEarliestElement());
-        Assert.assertEquals(5, (int) lru.getLatestElement());
+        cache.add(3); // 3->1->2
+        Assert.assertEquals(2, (int) cache.getEarliest());
+        Assert.assertEquals(3, (int) cache.getLatest());
 
-        lru.add(6);
-        Assert.assertEquals(2, (int) lru.getEarliestElement());
-        Assert.assertEquals(6, (int) lru.getLatestElement());
+        Assert.assertEquals(2, (int) cache.add(4)); // 4->3->1
+        Assert.assertEquals(1, (int) cache.getEarliest());
+        Assert.assertEquals(4, (int) cache.getLatest());
 
-        lru.add(2);
-        Assert.assertEquals(3, (int) lru.getEarliestElement());
-        Assert.assertEquals(2, (int) lru.getLatestElement());
+        cache.add(5); // 5->4->3
+        Assert.assertEquals(3, (int) cache.getEarliest());
+        Assert.assertEquals(5, (int) cache.getLatest());
+
+        cache.add(6); // 6->5->4
+        Assert.assertEquals(4, (int) cache.getEarliest());
+        Assert.assertEquals(6, (int) cache.getLatest());
+
+        cache.add(4); // 4->6->5
+        Assert.assertEquals(5, (int) cache.getEarliest());
+        Assert.assertEquals(4, (int) cache.getLatest());
     }
 }
