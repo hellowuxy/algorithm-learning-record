@@ -5,10 +5,8 @@ package cn.wxy.algorithms.bitmap;
  */
 public class BitMap {
     private byte[] array;
-    private int capacity;
 
     public BitMap(int capacity) {
-        this.capacity = capacity;
         array = new byte[capacity / 8 + 1];
     }
 

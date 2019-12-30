@@ -8,7 +8,7 @@ public class ArrayStack<T> {
     /**
      * default capacity of stack
      */
-    private final int DEFAULT_CAPACITY = 16;
+    private static final int DEFAULT_CAPACITY = 16;
 
     /**
      * the number of element the stack can hold

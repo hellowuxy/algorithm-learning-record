@@ -59,7 +59,7 @@ public class InsertionSort {
       }
       array[index] = newEle; // 插入新元素
     }
-    System.out.printf("总共比较了{%d}次\n", count);
+    System.out.printf("总共比较了{%d}次%n", count);
   }
 
   /**
@@ -83,7 +83,7 @@ public class InsertionSort {
         }
       }
     }
-    System.out.printf("总共比较了{%d}次\n", count);
+    System.out.printf("总共比较了{%d}次%n", count);
   }
 
   public static void main(String[] args) {

@@ -55,7 +55,7 @@ public class BubbleSort {
       }
     }
 
-    System.out.printf("总共比较了{%d}次\n", count);
+    System.out.printf("总共比较了{%d}次%n", count);
   }
 
   /**
@@ -86,7 +86,7 @@ public class BubbleSort {
       if(!swapFlag)
         break; // 数组已经有序，提前终止比较
     }
-    System.out.printf("总共比较了{%d}次\n", count);
+    System.out.printf("总共比较了{%d}次%n", count);
   }
 
   public static void main(String[] args) {

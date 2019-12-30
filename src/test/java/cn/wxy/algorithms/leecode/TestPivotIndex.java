@@ -26,11 +26,11 @@ public class TestPivotIndex {
         long s1 = System.currentTimeMillis();
         pivotIndex(array2);
         long s2 = System.currentTimeMillis();
-        System.out.printf("优化前，查找中间索引耗时{%d}ms\n", (s2 - s1));
+        System.out.printf("优化前，查找中间索引耗时{%d}ms%n", (s2 - s1));
 
         s1 = System.currentTimeMillis();
         pivotIndexOptimized(array2);
         s2 = System.currentTimeMillis();
-        System.out.printf("优化后，查找中间索引耗时{%d}ms\n", (s2 - s1));
+        System.out.printf("优化后，查找中间索引耗时{%d}ms%n", (s2 - s1));
     }
 }
