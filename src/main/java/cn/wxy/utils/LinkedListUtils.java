@@ -4,7 +4,7 @@ import cn.wxy.datastructure.list.LinkedList;
 import cn.wxy.datastructure.list.LinkedList.Node;
 
 /**
- * 与链表有关的操作工具类
+ * 单链表工具类
  *
  * @autor wxyidea
  * @create 2019-07-09
@@ -29,17 +29,51 @@ public class LinkedListUtils {
     }
 
     /**
+     * reverse linked list
+     *
+     * @param linkedList origin linked list
+     * @param <T>        data type stored in linked list
+     * @return reversed linked list
+     */
+    public static <T> Node<T> reverse(Node<T> linkedList) {
+        Node<T> cur = linkedList;
+        Node<T> prev = null;
+        while (cur != null) {
+            Node<T> node = cur;
+            cur = cur.next;
+            node.next = prev;
+            prev = node;
+        }
+        return prev;
+    }
+
+    /**
      * 打印单链表
      *
      * @param linkedList 链表
      */
     public static <T> void printList(LinkedList<T> linkedList) {
-        Node<T> node = linkedList.getHead();
+        Node<T> node = linkedList.getHead().next;
         StringBuilder sb = new StringBuilder();
         while (node != null) {
             sb.append(node.val).append("->");
             node = node.next;
         }
         System.out.println(sb.toString().substring(0, sb.toString().lastIndexOf('-')));
+    }
+
+    /**
+     * 打印单链表
+     *
+     * @param linkedList 链表
+     */
+    public static <T> void printList(Node<T> linkedList) {
+        Node<T> node = linkedList;
+        StringBuilder sb = new StringBuilder();
+        while (node != null) {
+            sb.append(node.val).append("->");
+            node = node.next;
+        }
+        System.out.println(sb.toString().substring(0, sb.lastIndexOf("-")));
     }
 }
