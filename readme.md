@@ -2,7 +2,10 @@
 
 ### Common Algorithms
 describing common algorithms with java, including binary search,bubble sort,insertion sort,
-selection sort,donald shell, quick sort.
+selection sort,donald shell, quick sort，merge sort.
+
+### The Implementation Of Classic Data Structure
+implementing classic data structure with Java, including list,stack,queue.
 
 ### LeetCode problemset
 
