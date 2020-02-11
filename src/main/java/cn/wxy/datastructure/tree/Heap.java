@@ -45,10 +45,10 @@ public class Heap {
     int i = 1;
     while (true) {
       int maxPos = i;
-      if (i * 2 < capacity && data[i] < data[i * 2]) {
+      if (i * 2 <= index && data[i] < data[i * 2]) {
         maxPos = i * 2;
       }
-      if (i * 2 + 1 < capacity && data[maxPos] < data[i * 2 + 1]) {
+      if (i * 2 + 1 <= index && data[maxPos] < data[i * 2 + 1]) {
         maxPos = i * 2 + 1;
       }
 
