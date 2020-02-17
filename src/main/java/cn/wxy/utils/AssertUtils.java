@@ -11,6 +11,18 @@ public class AssertUtils {
     }
   }
 
+  public static void assertTrue(boolean expected) {
+    if (!expected) {
+      throw new AssertionError("assert failed,expected is true, but actual is false");
+    }
+  }
+
+  public static void assertFalse(boolean expected) {
+    if (expected) {
+      throw new AssertionError("assert failed,expected is false, but actual is true");
+    }
+  }
+
   private static class AssertionError extends Error {
     public AssertionError() {
       super();
