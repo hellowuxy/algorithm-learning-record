@@ -42,7 +42,7 @@ public class TrieTree {
   private class TrieNode {
     public char data;
     public boolean isEndingChar;
-    public TrieNode[] children = new TrieNode[256];
+    public TrieNode[] children = new TrieNode[26];
 
     public TrieNode(char data) {
       this.data = data;
