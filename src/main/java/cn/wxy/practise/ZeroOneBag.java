@@ -5,7 +5,7 @@ import cn.wxy.utils.AssertUtils;
 import java.util.Arrays;
 
 /**
- * 0-1背包问题
+ * 贪心算法的应用： 0-1背包问题
  */
 public class ZeroOneBag {
   private int[] trace = new int[20]; // 跟踪放置到背包的物品，值为物品编号

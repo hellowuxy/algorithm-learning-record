@@ -1,7 +1,7 @@
 package cn.wxy.practise;
 
 /**
- * 八皇后问题
+ * 贪心算法的应用：八皇后问题
  */
 public class EightQueen {
 
