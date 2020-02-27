@@ -3,7 +3,7 @@ package cn.wxy.practise;
 import cn.wxy.utils.AssertUtils;
 
 /**
- * 贪心算法的应用：正则表达式匹配，假设只有 * 和 ？ 两种特殊字符
+ * 回溯算法的应用：正则表达式匹配，假设只有 * 和 ？ 两种特殊字符
  */
 public class Pattern {
   private char[] pattern;
