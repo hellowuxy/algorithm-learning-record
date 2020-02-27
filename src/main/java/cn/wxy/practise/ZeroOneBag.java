@@ -5,14 +5,27 @@ import cn.wxy.utils.AssertUtils;
 import java.util.Arrays;
 
 /**
- * 贪心算法的应用： 0-1背包问题
+ * 回溯算法的应用： 0-1背包问题
  */
 public class ZeroOneBag {
-  private int[] trace = new int[20]; // 跟踪放置到背包的物品，值为物品编号
+  private int[] item;
+  private int bagLoadWeight;
+  private int[] trace; // 跟踪放置到背包的物品，值为物品编号
   private int index = 0;
-  private int maxWeight; // 背包中已放置的物品重量
+  private int maxWeight = Integer.MIN_VALUE;
 
-  public int maxWeight(int[] item, int bagLoadWeight) {
+  public ZeroOneBag(int[] item, int bagLoadWeight) {
+    this.item = item;
+    this.bagLoadWeight = bagLoadWeight;
+    trace = new int[(int) Math.pow(2, item.length)];
+  }
+
+  /**
+   * 求背包能容纳的最大重量
+   *
+   * @return 最大重量
+   */
+  public int maxWeight() {
     put(item, item.length, 0, 0, bagLoadWeight);
     System.out.println(Arrays.toString(trace));
     return maxWeight;
@@ -39,7 +52,7 @@ public class ZeroOneBag {
   }
 
   public static void main(String[] args) {
-    int[] item = {1, 2, 3, 4, 5};
-    AssertUtils.assertEqual(7, new ZeroOneBag().maxWeight(item, 7));
+    AssertUtils.assertEqual(7, new ZeroOneBag(new int[]{1, 2, 3, 4, 5}, 7).maxWeight());
+    AssertUtils.assertEqual(9, new ZeroOneBag(new int[]{2, 2, 4, 6, 3}, 9).maxWeight());
   }
 }
